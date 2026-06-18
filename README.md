@@ -1,4 +1,4 @@
-# 🚀 E-Commerce Platform Engineering Project
+# 🚀 E-Commerce Devops Engineering Project
 
 ## Overview
 

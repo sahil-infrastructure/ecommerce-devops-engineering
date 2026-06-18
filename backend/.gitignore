@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.log
+.env
+backend/app.py.bak
+.vscode/
+.idea/

@@ -1,157 +1,303 @@
-# E-Commerce DevOps Engineering Project
+# 🚀 E-Commerce Platform Engineering Project
 
-## Project Overview
+## Overview
 
-This project demonstrates the deployment, monitoring, troubleshooting, and rollback of a containerized e-commerce application using industry-standard DevOps tools.
+This project demonstrates the deployment, monitoring, troubleshooting, and recovery of a containerized e-commerce platform using industry-standard Platform Engineering and DevOps practices.
 
-The objective was to simulate a real-world production environment and implement observability, alerting, and recovery mechanisms.
+The objective was to simulate a production-style environment and gain hands-on experience with:
 
----
+* Containerization
+* Service orchestration
+* Infrastructure monitoring
+* Observability
+* Incident response
+* Deployment rollback strategies
 
-## Architecture
-
-Flask Application → PostgreSQL → Docker Compose
-
-Monitoring Stack:
-
-cAdvisor → Prometheus → Grafana
-
----
-
-## Technologies Used
-
-* Docker
-* Docker Compose
-* Python Flask
-* PostgreSQL
-* Prometheus
-* cAdvisor
-* Grafana
-* Git
-* GitHub
+The project follows operational workflows commonly used by DevOps Engineers, Platform Engineers, and Site Reliability Engineers (SREs).
 
 ---
 
-## Features Implemented
+# 🏗 Architecture
 
-### Application Layer
+![Architecture Diagram](screenshots/architecture-diagram.png)
 
-* Flask REST API
+### Application Flow
+
+```text
+User
+ │
+ ▼
+Flask Application
+ │
+ ▼
+PostgreSQL Database
+```
+
+### Monitoring Flow
+
+```text
+Application Containers
+        │
+        ▼
+     cAdvisor
+        │
+        ▼
+    Prometheus
+        │
+        ▼
+      Grafana
+```
+
+---
+
+# ⚙ Technology Stack
+
+| Category              | Technology     |
+| --------------------- | -------------- |
+| Application           | Python Flask   |
+| Database              | PostgreSQL     |
+| Containerization      | Docker         |
+| Orchestration         | Docker Compose |
+| Monitoring            | Prometheus     |
+| Container Metrics     | cAdvisor       |
+| Visualization         | Grafana        |
+| Version Control       | Git            |
+| Repository Management | GitHub         |
+
+---
+
+# ✨ Key Features
+
+## Application Layer
+
+* Flask-based REST API
 * Health Check Endpoint
 * PostgreSQL Integration
+* Containerized Deployment
 
-### Containerization
+## Containerization
 
 * Custom Docker Image
-* Docker Compose Deployment
-* Persistent Volumes
-* Container Networking
+* Docker Compose Orchestration
+* Persistent Storage
+* Internal Container Networking
 
-### Monitoring
+## Monitoring & Observability
 
-* cAdvisor Container Metrics
-* Prometheus Metric Collection
-* Grafana Visualization
+* Real-time Container Metrics
+* Resource Utilization Tracking
+* Infrastructure Monitoring
+* Service Availability Monitoring
 
-### Dashboards
+## Dashboards
 
-* Total Memory Usage
-* CPU Usage
-* Running Containers
+* CPU Utilization
+* Memory Utilization
+* Running Container Count
 * Filesystem Usage
+* Container Health Monitoring
 
-### Alerting
+## Incident Management
 
-* Backend Availability Alert
-* Threshold-Based Monitoring
-
-### Incident Simulation
-
-* Deployment Failure Simulation
-* Version Rollback
+* Failure Simulation
 * Service Recovery Validation
+* Version Rollback Testing
+* Health Verification
 
 ---
 
-## Rollback Demonstration
+# 📊 Monitoring Stack
 
-A faulty application version (v1.1.0) was intentionally deployed.
+## Prometheus
 
-Observed Behavior:
+Prometheus is responsible for collecting and storing metrics from monitored services.
 
-* Container restart loop
-* Application startup failure
-* Service unavailable
+Features:
 
-Recovery Steps:
-
-* Reverted deployment from v1.1.0 to v1.0.0
-* Recreated containers
-* Validated health endpoint
-* Restored service availability
-
----
-
-## Screenshots
-
-### Grafana Dashboard
-
-![Grafana Dashboard](screenshots/grafana-dashboard.png)
+* Metric Scraping
+* Time-Series Storage
+* Service Monitoring
+* Availability Tracking
 
 ### Prometheus Targets
 
 ![Prometheus Targets](screenshots/prometheus-targets.png)
 
-### Running Containers
+---
 
-![Docker Containers](screenshots/docker-containers.png)
+## cAdvisor
+
+cAdvisor collects container-level resource metrics including:
+
+* CPU Usage
+* Memory Usage
+* Filesystem Utilization
+* Network Statistics
 
 ---
 
-## Verification
+## Grafana
 
-Health Check:
+Grafana provides visualization and monitoring dashboards.
+
+### Grafana Dashboard
+
+![Grafana Dashboard](screenshots/grafana-dashboard.png)
+
+Monitored Metrics:
+
+* CPU Usage
+* Memory Usage
+* Container Health
+* Filesystem Utilization
+* Running Containers
+
+---
+
+# 🐳 Running Containers
+
+The application stack is deployed using Docker Compose.
+
+### Active Containers
+
+![Docker Containers](screenshots/docker-containers.png)
+
+Components:
+
+* Flask Application
+* PostgreSQL
+* Prometheus
+* Grafana
+* cAdvisor
+
+---
+
+# 🔍 Health Verification
+
+Verify application health:
 
 ```bash
 curl http://localhost:5000/health
 ```
 
-Expected Output:
+Expected response:
 
 ```json
-{"status":"healthy"}
+{
+  "status": "healthy"
+}
 ```
 
 ---
 
-## Learning Outcomes
+# 🚨 Incident Simulation & Rollback
 
-* Docker Image Management
-* Docker Compose Orchestration
-* Container Monitoring
-* Metrics Collection
-* Dashboard Creation
-* Alerting Concepts
-* Incident Response
-* Deployment Rollback
-* GitHub Version Control
+To simulate a real-world deployment failure, a faulty application version (v1.1.0) was intentionally deployed.
+
+## Failure Scenario
+
+Observed behavior:
+
+* Application startup failure
+* Service unavailability
+* Container restart loop
+* Health check failure
+
+## Recovery Procedure
+
+Rollback actions:
+
+1. Reverted deployment from v1.1.0 to v1.0.0
+2. Recreated application containers
+3. Validated service health
+4. Confirmed application availability
+5. Verified monitoring recovery
+
+## Outcome
+
+Service was successfully restored with minimal downtime using a controlled rollback procedure.
 
 ---
 
-## Repository Structure
+# 📁 Repository Structure
 
 ```text
-backend/
-compose/
-monitoring/
-screenshots/
-README.md
+ecommerce-platform/
+│
+├── backend/
+│   ├── app.py
+│   ├── Dockerfile
+│   ├── requirements.txt
+│
+├── compose/
+│   └── docker-compose.yml
+│
+├── monitoring/
+│   └── prometheus/
+│       └── prometheus.yml
+│
+├── screenshots/
+│   ├── architecture-diagram.png
+│   ├── docker-containers.png
+│   ├── prometheus-targets.png
+│   └── grafana-dashboard.png
+│
+└── README.md
 ```
 
 ---
 
-## Author
+# 🎯 Skills Demonstrated
 
-Sahil
+* Docker
+* Docker Compose
+* Python Flask
+* PostgreSQL
+* Infrastructure Monitoring
+* Prometheus
+* Grafana
+* Container Observability
+* Incident Troubleshooting
+* Deployment Rollback
+* Git Version Control
+* GitHub Collaboration
+
+---
+
+# 📚 Learning Outcomes
+
+Through this project I gained practical experience in:
+
+* Building containerized applications
+* Managing multi-container deployments
+* Monitoring infrastructure and services
+* Implementing observability practices
+* Troubleshooting production-style incidents
+* Validating service recovery procedures
+* Understanding rollback strategies
+* Maintaining infrastructure through version control
+
+---
+
+# 🔮 Future Enhancements
+
+Planned improvements:
+
+* Kubernetes Deployment
+* GitHub Actions CI/CD Pipeline
+* Terraform Infrastructure Provisioning
+* Alertmanager Integration
+* Centralized Logging
+* Blue-Green Deployments
+* Horizontal Scaling
+* Automated Rollback Workflows
+
+---
+
+# 👨‍💻 Author
+
+**Sahil**
 Senior IT Support Engineer
-Platform Engineering Learning Project
+Aspiring Platform Engineer
+
+This project was created as part of my hands-on Platform Engineering and DevOps learning journey, focusing on real-world operational practices used in modern cloud-native environments.

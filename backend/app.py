@@ -17,8 +17,8 @@ def db_check():
 		connection = psycopg2.connect(
 			host=os.getenv("DB_HOST", "postgres"),
 			database=os.getenv("DB_NAME", "ecommerce"),
-			user=os.getenv("DB_USER", "admin"),
-			password=os.getenv("DB_PASSWORD", "StrongPassword123"),
+			user=os.getenv("DB_USER", "YOUR_DB_USER"),
+			password=os.getenv("DB_PASSWORD", "YOUR_DB_PASSWORD"),
 			port=os.getenv("DB_PORT", "5432")
 		)
 
